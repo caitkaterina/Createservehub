@@ -1,7 +1,7 @@
 
-  # Create ServeHub Opening Page
+  # ServeHubUI
 
-  This is a code bundle for Create ServeHub Opening Page. The original project is available at https://www.figma.com/design/NySNwF8VqNZUyYytyQzUS6/Create-ServeHub-Opening-Page.
+  This is a code bundle for ServeHubUI. The original project is available at https://www.figma.com/design/NySNwF8VqNZUyYytyQzUS6/ServeHubUI.
 
   ## Running the code
 
