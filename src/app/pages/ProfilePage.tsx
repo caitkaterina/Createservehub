@@ -10,94 +10,93 @@ import {
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────────
-   iOS 26 LIQUID GLASS SYSTEM
+   GLASS SYSTEM  (same three-tier language as BookingsPage)
 ───────────────────────────────────────────────────────────────── */
 const G = {
-  card: {
-    background: "rgba(255,255,255,0.72)",
-    backdropFilter: "blur(32px) saturate(180%)",
-    WebkitBackdropFilter: "blur(32px) saturate(180%)",
-    border: "1px solid rgba(255,255,255,0.90)",
-    boxShadow: [
-      "inset 0 1px 0 rgba(255,255,255,1)",
-      "inset 0 -0.5px 0 rgba(0,0,0,0.05)",
-      "0 4px 24px rgba(0,0,0,0.07)",
-      "0 1px 4px rgba(0,0,0,0.04)",
-    ].join(", "),
-  } as React.CSSProperties,
-
-  elevated: {
-    background: "rgba(255,255,255,0.88)",
-    backdropFilter: "blur(40px) saturate(200%)",
-    WebkitBackdropFilter: "blur(40px) saturate(200%)",
-    border: "1px solid rgba(255,255,255,0.95)",
-    boxShadow: [
-      "inset 0 1.5px 0 rgba(255,255,255,1)",
-      "inset 0 -0.5px 0 rgba(0,0,0,0.04)",
-      "0 8px 32px rgba(0,0,0,0.08)",
-      "0 2px 8px rgba(0,0,0,0.05)",
-    ].join(", "),
-  } as React.CSSProperties,
-
-  chip: {
-    background: "rgba(255,255,255,0.60)",
-    backdropFilter: "blur(20px) saturate(160%)",
+  sm: {
+    background:           "rgba(255,255,255,0.07)",
+    backdropFilter:       "blur(20px) saturate(160%)",
     WebkitBackdropFilter: "blur(20px) saturate(160%)",
-    border: "1px solid rgba(255,255,255,0.80)",
-    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.90), 0 2px 6px rgba(0,0,0,0.04)",
+    border:               "1px solid rgba(255,255,255,0.11)",
+    boxShadow:            "inset 0 1px 0 rgba(255,255,255,0.18), 0 4px 16px rgba(0,0,0,0.22)",
   } as React.CSSProperties,
-
-  modal: {
-    background: "rgba(248,248,252,0.96)",
-    backdropFilter: "blur(60px) saturate(220%)",
-    WebkitBackdropFilter: "blur(60px) saturate(220%)",
-    border: "1px solid rgba(255,255,255,0.95)",
-    boxShadow: "0 -20px 60px rgba(0,0,0,0.12)",
+  md: {
+    background:           "rgba(255,255,255,0.095)",
+    backdropFilter:       "blur(36px) saturate(190%)",
+    WebkitBackdropFilter: "blur(36px) saturate(190%)",
+    border:               "1px solid rgba(255,255,255,0.16)",
+    boxShadow:            [
+      "inset 0 1px 0 rgba(255,255,255,0.28)",
+      "inset 0 -1px 0 rgba(0,0,0,0.10)",
+      "0 8px 40px rgba(0,0,0,0.32)",
+      "0 2px 8px rgba(0,0,0,0.18)",
+    ].join(", "),
+  } as React.CSSProperties,
+  lg: {
+    background:           "rgba(255,255,255,0.13)",
+    backdropFilter:       "blur(52px) saturate(210%)",
+    WebkitBackdropFilter: "blur(52px) saturate(210%)",
+    border:               "1px solid rgba(255,255,255,0.22)",
+    boxShadow:            [
+      "inset 0 1.5px 0 rgba(255,255,255,0.40)",
+      "inset 0 -1px 0 rgba(0,0,0,0.12)",
+      "0 20px 60px rgba(0,0,0,0.40)",
+      "0 6px 20px rgba(0,0,0,0.22)",
+    ].join(", "),
   } as React.CSSProperties,
 };
 
-/* ─── iOS 26 Palette ──────────────────────────────────────────── */
-const BG        = "#F2F2F7";
-const BLUE      = "#007AFF";
-const GREEN     = "#34C759";
-const ORANGE    = "#FF9F0A";
-const PURPLE    = "#AF52DE";
-const RED       = "#FF3B30";
-const TEAL      = "#32ADE6";
-const PINK      = "#FF2D55";
-const INDIGO    = "#5856D6";
-const LABEL     = "#1C1C1E";
-const LABEL2    = "#48484A";
-const LABEL3    = "#8E8E93";
-const SEP       = "rgba(60,60,67,0.12)";
+/* ─── Tokens ────────────────────────────────────────────────────── */
+const GREEN_BRIGHT = "#5CDB80";
+const GREEN_DARK   = "#2D7A3E";
+const AMBER        = "#FCD34D";
+const BLUE         = "#60A5FA";
+const PURPLE       = "#C084FC";
+const RED          = "#F87171";
+const TEAL         = "#2DD4BF";
+const W95          = "rgba(255,255,255,0.95)";
+const W65          = "rgba(255,255,255,0.65)";
+const W38          = "rgba(255,255,255,0.38)";
+const W20          = "rgba(255,255,255,0.20)";
 
-/* ─── Mock user ─────────────────────────────────────────────── */
+/* ─── Glow helpers ──────────────────────────────────────────────── */
+const glow = (col: string, a = 0.22) =>
+  `rgba(${hexRgb(col)},${a})`;
+
+function hexRgb(hex: string): string {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return `${r},${g},${b}`;
+}
+
+/* ─── Mock user data ────────────────────────────────────────────── */
 const USER = {
-  name: "Thabo Nkosi",
-  initials: "TN",
-  phone: "+27 82 456 7890",
-  email: "thabo.nkosi@gmail.com",
-  tier: "Gold Member",
-  rating: 4.9,
-  reviews: 23,
-  member: "Member since January 2025",
-  referral: "THABO20",
-  points: 850,
+  name:      "Thabo Nkosi",
+  initials:  "TN",
+  phone:     "+27 82 456 7890",
+  email:     "thabo.nkosi@gmail.com",
+  tier:      "Gold Member",
+  rating:    4.9,
+  reviews:   23,
+  member:    "Member since January 2025",
+  referral:  "THABO20",
+  points:    850,
 };
 
 const SAVED_ADDRESSES = [
-  { id: 1, label: "Home", icon: Home, address: "14 Rivonia Road, Sandton, 2196" },
-  { id: 2, label: "Work", icon: Briefcase, address: "88 Sandton Drive, Sandton, 2196" },
+  { id: 1, label: "Home",    icon: Home,     address: "14 Rivonia Road, Sandton, 2196" },
+  { id: 2, label: "Work",    icon: Briefcase, address: "88 Sandton Drive, Sandton, 2196" },
 ];
 
 const PAYMENT_METHODS = [
-  { id: 1, type: "Visa", last4: "4242", expiry: "09/27", primary: true },
+  { id: 1, type: "Visa",       last4: "4242", expiry: "09/27", primary: true  },
   { id: 2, type: "Mastercard", last4: "1891", expiry: "03/26", primary: false },
 ];
 
-/* ═══════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════════
    EDIT PROFILE MODAL
-═══════════════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════════════ */
 function EditProfileModal({
   user, onClose, onSave,
 }: {
@@ -105,86 +104,93 @@ function EditProfileModal({
   onClose: () => void;
   onSave: (u: Partial<typeof USER>) => void;
 }) {
-  const [name, setName] = useState(user.name);
+  const [name,  setName]  = useState(user.name);
   const [phone, setPhone] = useState(user.phone);
   const [email, setEmail] = useState(user.email);
 
   return (
     <div
-      style={{
-        position: "fixed", inset: 0, zIndex: 200,
-        background: "rgba(0,0,0,0.20)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        display: "flex", alignItems: "flex-end",
-      }}
+      style={{ position:"fixed", inset:0, zIndex:200, background:"rgba(0,0,0,0.72)",
+               backdropFilter:"blur(18px)", WebkitBackdropFilter:"blur(18px)",
+               display:"flex", alignItems:"flex-end" }}
       onClick={onClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          width: "100%", ...G.modal,
-          borderRadius: "22px 22px 0 0",
-          borderBottom: "none",
-          padding: "0 20px 52px",
-          fontFamily: "'SF Pro Display', -apple-system, sans-serif",
-          position: "relative",
+          width:"100%", ...G.lg,
+          background:"rgba(8,20,11,0.90)",
+          backdropFilter:"blur(60px) saturate(220%)",
+          WebkitBackdropFilter:"blur(60px) saturate(220%)",
+          borderRadius:"32px 32px 0 0", borderBottom:"none",
+          padding:"0 24px 56px", fontFamily:"'Inter',sans-serif",
+          position:"relative", overflow:"hidden",
         }}
       >
-        <div style={{ width: 36, height: 5, borderRadius: 3, background: "rgba(60,60,67,0.18)", margin: "12px auto 24px" }} />
+        {/* Specular line */}
+        <div style={{ position:"absolute", top:0, left:"12%", right:"12%", height:1,
+          background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.70) 50%,transparent)" }} />
+
+        {/* Handle */}
+        <div style={{ width:36, height:4, borderRadius:2, background:W20, margin:"16px auto 28px" }} />
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-8">
           <div>
-            <p style={{ fontSize: 20, fontWeight: 700, color: LABEL, letterSpacing: "-0.02em" }}>Edit Profile</p>
-            <p style={{ fontSize: 13, color: LABEL3, marginTop: 2 }}>Update your personal information</p>
+            <p style={{ fontSize:20, fontWeight:800, color:W95, letterSpacing:"-0.02em" }}>Edit Profile</p>
+            <p style={{ fontSize:13, color:W65, marginTop:2 }}>Update your personal information</p>
           </div>
           <button onClick={onClose}
-            style={{ ...G.chip, width: 32, height: 32, borderRadius: "50%",
-              display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-            <X size={15} color={LABEL3} />
+            style={{ ...G.sm, width:36, height:36, borderRadius:"50%",
+                     display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer" }}>
+            <X size={16} color={W65} />
           </button>
         </div>
 
-        {/* Avatar */}
-        <div className="flex justify-center mb-7">
-          <div style={{ position: "relative" }}>
+        {/* Avatar edit */}
+        <div className="flex justify-center mb-8">
+          <div style={{ position:"relative" }}>
             <div style={{
-              width: 76, height: 76, borderRadius: "50%",
-              background: "linear-gradient(145deg, #007AFF, #5AC8FA)",
-              boxShadow: "0 6px 20px rgba(0,122,255,0.30)",
-              display: "flex", alignItems: "center", justifyContent: "center",
+              width:80, height:80, borderRadius:"50%",
+              background:"linear-gradient(135deg,rgba(45,122,62,0.75),rgba(16,60,28,0.85))",
+              border:"2px solid rgba(92,219,128,0.45)",
+              boxShadow:`0 0 0 5px rgba(92,219,128,0.10), 0 10px 30px rgba(0,0,0,0.45)`,
+              display:"flex", alignItems:"center", justifyContent:"center",
             }}>
-              <span style={{ fontSize: 26, fontWeight: 700, color: "#fff" }}>{USER.initials}</span>
+              <span style={{ fontSize:28, fontWeight:800, color:"#fff" }}>{USER.initials}</span>
             </div>
             <div style={{
-              position: "absolute", bottom: 0, right: 0, width: 26, height: 26, borderRadius: "50%",
-              background: BLUE, border: "2px solid rgba(248,248,252,0.96)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: "0 2px 8px rgba(0,122,255,0.40)", cursor: "pointer",
+              position:"absolute", bottom:0, right:0, width:28, height:28, borderRadius:"50%",
+              background:`linear-gradient(135deg,${GREEN_DARK},#3a9e52)`,
+              border:"2px solid rgba(8,20,11,0.90)",
+              display:"flex", alignItems:"center", justifyContent:"center",
+              boxShadow:`0 4px 12px rgba(45,122,62,0.55)`,
+              cursor:"pointer",
             }}>
-              <Camera size={12} color="#fff" />
+              <Camera size={13} color="#fff" />
             </div>
           </div>
         </div>
 
         {/* Fields */}
         <div className="flex flex-col gap-3 mb-6">
-          <LightInput label="Full Name" value={name} onChange={setName} placeholder="Your full name" />
-          <LightInput label="Phone Number" value={phone} onChange={setPhone} placeholder="+27 xx xxx xxxx" />
-          <LightInput label="Email" value={email} onChange={setEmail} placeholder="email@example.com" type="email" />
+          <GlassInput label="Full Name"    value={name}  onChange={setName}  placeholder="Your full name" />
+          <GlassInput label="Phone Number" value={phone} onChange={setPhone} placeholder="+27 xx xxx xxxx" />
+          <GlassInput label="Email"        value={email} onChange={setEmail} placeholder="email@example.com" type="email" />
         </div>
 
+        {/* Save */}
         <button
           onClick={() => { onSave({ name, phone, email }); onClose(); }}
-          className="flex items-center justify-center gap-2 w-full py-3.5 rounded-[16px]"
+          className="flex items-center justify-center gap-2 w-full py-4 rounded-[18px]"
           style={{
-            background: BLUE, border: "none",
-            boxShadow: "0 4px 20px rgba(0,122,255,0.35)",
-            fontSize: 15, fontWeight: 600, color: "#fff", cursor: "pointer",
+            background:`linear-gradient(135deg,${GREEN_DARK},#3a9e52)`,
+            border:"1px solid rgba(92,219,128,0.35)",
+            boxShadow:`0 8px 30px rgba(45,122,62,0.55), inset 0 1px 0 rgba(255,255,255,0.22)`,
+            fontSize:15, fontWeight:700, color:"#fff", cursor:"pointer",
           }}
         >
-          <Save size={15} color="#fff" />
+          <Save size={16} color="#fff" />
           Save Changes
         </button>
       </div>
@@ -192,46 +198,46 @@ function EditProfileModal({
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════════
    ADD ADDRESS MODAL
-═══════════════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════════════ */
 function AddAddressModal({ onClose }: { onClose: () => void }) {
-  const [label, setLabel] = useState("");
-  const [address, setAddr] = useState("");
+  const [label, setLabel]   = useState("");
+  const [address, setAddr]  = useState("");
   return (
     <div
-      style={{
-        position: "fixed", inset: 0, zIndex: 200,
-        background: "rgba(0,0,0,0.20)", backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)", display: "flex", alignItems: "flex-end",
-      }}
+      style={{ position:"fixed", inset:0, zIndex:200, background:"rgba(0,0,0,0.72)",
+               backdropFilter:"blur(18px)", WebkitBackdropFilter:"blur(18px)",
+               display:"flex", alignItems:"flex-end" }}
       onClick={onClose}
     >
       <div onClick={(e) => e.stopPropagation()}
-        style={{
-          width: "100%", ...G.modal,
-          borderRadius: "22px 22px 0 0", borderBottom: "none",
-          padding: "0 20px 52px",
-          fontFamily: "'SF Pro Display', -apple-system, sans-serif",
-        }}>
-        <div style={{ width: 36, height: 5, borderRadius: 3, background: "rgba(60,60,67,0.18)", margin: "12px auto 24px" }} />
+        style={{ width:"100%", ...G.lg, background:"rgba(8,20,11,0.90)",
+          backdropFilter:"blur(60px) saturate(220%)", WebkitBackdropFilter:"blur(60px) saturate(220%)",
+          borderRadius:"32px 32px 0 0", borderBottom:"none",
+          padding:"0 24px 56px", fontFamily:"'Inter',sans-serif", position:"relative" }}
+      >
+        <div style={{ position:"absolute", top:0, left:"12%", right:"12%", height:1,
+          background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.70) 50%,transparent)" }} />
+        <div style={{ width:36, height:4, borderRadius:2, background:W20, margin:"16px auto 28px" }} />
         <div className="flex items-center justify-between mb-6">
-          <p style={{ fontSize: 20, fontWeight: 700, color: LABEL }}>Add Address</p>
-          <button onClick={onClose} style={{ ...G.chip, width: 32, height: 32, borderRadius: "50%",
-            display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-            <X size={15} color={LABEL3} />
+          <p style={{ fontSize:20, fontWeight:800, color:W95, letterSpacing:"-0.02em" }}>Add Address</p>
+          <button onClick={onClose} style={{ ...G.sm, width:36, height:36, borderRadius:"50%",
+            display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer" }}>
+            <X size={16} color={W65} />
           </button>
         </div>
         <div className="flex flex-col gap-3 mb-6">
-          <LightInput label="Label" value={label} onChange={setLabel} placeholder="Home, Work, Gym…" />
-          <LightInput label="Full Address" value={address} onChange={setAddr} placeholder="Street, suburb, city" />
+          <GlassInput label="Label (e.g. Home)" value={label} onChange={setLabel} placeholder="Home, Work, Gym…" />
+          <GlassInput label="Full Address"      value={address} onChange={setAddr} placeholder="Street, suburb, city" />
         </div>
         <button onClick={onClose}
-          className="flex items-center justify-center gap-2 w-full py-3.5 rounded-[16px]"
-          style={{ background: BLUE, border: "none",
-            boxShadow: "0 4px 20px rgba(0,122,255,0.35)",
-            fontSize: 15, fontWeight: 600, color: "#fff", cursor: "pointer" }}>
-          <MapPin size={15} color="#fff" />
+          className="flex items-center justify-center gap-2 w-full py-4 rounded-[18px]"
+          style={{ background:`linear-gradient(135deg,${GREEN_DARK},#3a9e52)`,
+            border:"1px solid rgba(92,219,128,0.35)",
+            boxShadow:`0 8px 30px rgba(45,122,62,0.55), inset 0 1px 0 rgba(255,255,255,0.22)`,
+            fontSize:15, fontWeight:700, color:"#fff", cursor:"pointer" }}>
+          <MapPin size={16} color="#fff" />
           Save Address
         </button>
       </div>
@@ -239,422 +245,629 @@ function AddAddressModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   PROFILE PAGE
-═══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   MAIN — PROFILE PAGE
+═══════════════════════════════════════════════════════════════════ */
 export function ProfilePage({ onNavigate }: { onNavigate?: (tab: string) => void }) {
   const [user, setUser] = useState(USER);
-  const [showEdit, setShowEdit] = useState(false);
-  const [showAddAddr, setShowAddAddr] = useState(false);
-  const [addrExpanded, setAddrExpanded] = useState(false);
-  const [payExpanded, setPayExpanded] = useState(false);
-  const [notifPush, setNotifPush] = useState(true);
-  const [notifReminder, setNotifReminder] = useState(true);
-  const [notifPromo, setNotifPromo] = useState(false);
-  const [notifWhatsapp, setNotifWhatsapp] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-  const [biometrics, setBiometrics] = useState(true);
-  const [twoFactor, setTwoFactor] = useState(false);
-  const [hasPets, setHasPets] = useState(false);
+  const [showEdit,       setShowEdit]      = useState(false);
+  const [showAddAddr,    setShowAddAddr]   = useState(false);
+  const [addrExpanded,   setAddrExpanded]  = useState(false);
+  const [payExpanded,    setPayExpanded]   = useState(false);
+  const [notifPush,      setNotifPush]     = useState(true);
+  const [notifReminder,  setNotifReminder] = useState(true);
+  const [notifPromo,     setNotifPromo]    = useState(false);
+  const [notifWhatsapp,  setNotifWhatsapp] = useState(true);
+  const [darkMode,       setDarkMode]      = useState(true);
+  const [biometrics,     setBiometrics]    = useState(true);
+  const [twoFactor,      setTwoFactor]     = useState(false);
+  const [hasPets,        setHasPets]       = useState(false);
 
   return (
-    <div style={{
-      position: "relative", height: "100%", overflow: "hidden",
-      fontFamily: "'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif",
-      background: BG,
-    }}>
-      {/* Scrollable content */}
-      <div style={{ position: "relative", zIndex: 1, height: "100%", overflowY: "auto", scrollbarWidth: "none" }}>
+    <div style={{ position:"relative", height:"100%", overflow:"hidden", fontFamily:"'Inter',sans-serif" }}>
 
-        {/* ══════════════════════════════════════════════
-            HERO CARD — Lifted, translucent
-        ══════════════════════════════════════════════ */}
-        <div style={{ padding: "56px 16px 0" }}>
-          <div style={{
-            ...G.elevated,
-            borderRadius: 28,
-            padding: "28px 20px 24px",
-            position: "relative", overflow: "hidden",
-          }}>
-            {/* Subtle iridescent mesh */}
-            <div style={{
-              position: "absolute", inset: 0, pointerEvents: "none", borderRadius: 28,
-              background: "linear-gradient(135deg, rgba(0,122,255,0.04) 0%, rgba(175,82,222,0.03) 50%, rgba(52,199,89,0.03) 100%)",
-            }} />
-            {/* Specular top edge */}
-            <div style={{
-              position: "absolute", top: 0, left: "15%", right: "15%", height: 1,
-              background: "linear-gradient(90deg, transparent, rgba(255,255,255,1) 50%, transparent)",
-              pointerEvents: "none",
-            }} />
+      {/* ── BACKGROUND ───────────────────────────────────────────── */}
+      <div style={{ position:"absolute", inset:0, zIndex:0,
+        background:"linear-gradient(170deg,#060B07 0%,#091409 50%,#050D06 100%)", overflow:"hidden" }}>
 
-            {/* Avatar */}
-            <div className="flex flex-col items-center gap-2">
-              <div style={{ position: "relative", marginBottom: 4 }}>
+        <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.038, pointerEvents:"none" }}>
+          <filter id="pg"><feTurbulence type="fractalNoise" baseFrequency="0.70" numOctaves="4" stitchTiles="stitch"/>
+            <feColorMatrix type="saturate" values="0"/></filter>
+          <rect width="100%" height="100%" filter="url(#pg)"/>
+        </svg>
+
+        {/* Orbs */}
+        <Orb top={-60}  left={-60}  size={300} color="rgba(45,122,62,0.50)"   blur={70} anim="orbA 14s ease-in-out infinite" />
+        <Orb top={100}  right={-50} size={220} color="rgba(16,80,36,0.40)"    blur={55} anim="orbB 11s ease-in-out infinite" />
+        <Orb top="42%"  right="10%" size={160} color="rgba(92,219,128,0.20)"  blur={45} anim="orbA 8s  ease-in-out infinite reverse" />
+        <Orb top="55%"  left={-30}  size={200} color="rgba(8,50,22,0.55)"     blur={50} anim="orbC 16s ease-in-out infinite" />
+        <Orb bottom={60} right={40} size={130} color="rgba(45,122,62,0.25)"   blur={38} anim="orbB 10s ease-in-out infinite reverse" />
+
+        <style>{`
+          @keyframes orbA{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(22px,-18px) scale(1.07)}66%{transform:translate(-14px,16px) scale(0.94)}}
+          @keyframes orbB{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-16px,20px) scale(1.05)}70%{transform:translate(12px,-8px) scale(0.97)}}
+          @keyframes orbC{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,24px) scale(1.08)}}
+          @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        `}</style>
+      </div>
+
+      {/* ── SCROLLABLE CONTENT ───────────────────────────────────── */}
+      <div style={{ position:"relative", zIndex:1, height:"100%", overflowY:"auto", scrollbarWidth:"none" }}>
+
+        {/* ══════════════════════════════════════════════════════════
+            HERO CARD
+        ══════════════════════════════════════════════════════════ */}
+        <div style={{ padding:"52px 16px 0", animation:"fadeUp 0.45s ease both" }}>
+          <div style={{ ...G.lg, borderRadius:30, padding:"26px 22px 24px", position:"relative", overflow:"hidden" }}>
+            {/* Shimmer */}
+            <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1,
+              background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.80) 50%,transparent)" }} />
+            {/* Inner radial glow */}
+            <div style={{ position:"absolute", top:-60, left:"50%", transform:"translateX(-50%)",
+              width:200, height:200, borderRadius:"50%",
+              background:"radial-gradient(circle,rgba(92,219,128,0.10) 0%,transparent 70%)",
+              pointerEvents:"none" }} />
+
+            {/* Avatar + Edit row */}
+            <div className="flex flex-col items-center gap-1">
+              {/* Avatar */}
+              <div style={{ position:"relative", marginBottom:6 }}>
                 <div style={{
-                  width: 84, height: 84, borderRadius: "50%",
-                  background: "linear-gradient(145deg, #007AFF 0%, #5AC8FA 60%, #34C759 100%)",
-                  boxShadow: "0 8px 24px rgba(0,122,255,0.30), 0 2px 8px rgba(0,122,255,0.15), inset 0 1.5px 0 rgba(255,255,255,0.40)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
+                  width:86, height:86, borderRadius:"50%",
+                  background:"linear-gradient(145deg,rgba(45,122,62,0.72),rgba(12,46,22,0.88))",
+                  border:"2px solid rgba(92,219,128,0.50)",
+                  boxShadow:`0 0 0 5px rgba(92,219,128,0.10), 0 12px 32px rgba(0,0,0,0.50), inset 0 1px 0 rgba(255,255,255,0.28)`,
+                  display:"flex", alignItems:"center", justifyContent:"center",
                 }}>
-                  <span style={{ fontSize: 28, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>
+                  <span style={{ fontSize:28, fontWeight:800, color:"#fff", letterSpacing:"-0.02em", textShadow:"0 2px 10px rgba(0,0,0,0.50)" }}>
                     {user.initials}
                   </span>
                 </div>
-                <button onClick={() => setShowEdit(true)} style={{
-                  position: "absolute", bottom: 1, right: 1, width: 28, height: 28, borderRadius: "50%",
-                  background: BLUE, border: "2.5px solid rgba(248,248,252,0.96)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: "0 2px 10px rgba(0,122,255,0.40)", cursor: "pointer",
-                }}>
-                  <Camera size={12} color="#fff" />
+                {/* Camera overlay */}
+                <button
+                  onClick={() => setShowEdit(true)}
+                  style={{
+                    position:"absolute", bottom:0, right:0, width:30, height:30, borderRadius:"50%",
+                    background:`linear-gradient(135deg,${GREEN_DARK},#3a9e52)`,
+                    border:"2px solid rgba(5,14,7,0.95)",
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    boxShadow:`0 4px 14px rgba(45,122,62,0.60)`, cursor:"pointer",
+                  }}>
+                  <Camera size={13} color="#fff" />
                 </button>
               </div>
 
-              <p style={{ fontSize: 22, fontWeight: 700, color: LABEL, letterSpacing: "-0.025em" }}>
-                {user.name}
-              </p>
+              {/* Name */}
+              <p style={{ fontSize:24, fontWeight:800, color:W95, letterSpacing:"-0.025em" }}>{user.name}</p>
 
-              {/* Gold tier badge */}
+              {/* Tier badge */}
               <span style={{
-                display: "inline-flex", alignItems: "center", gap: 5,
-                padding: "4px 14px", borderRadius: 20,
-                background: "linear-gradient(135deg, rgba(255,159,10,0.12), rgba(255,204,0,0.10))",
-                border: "1px solid rgba(255,159,10,0.25)",
-                fontSize: 12, fontWeight: 600, color: ORANGE,
-                boxShadow: "0 2px 8px rgba(255,159,10,0.14)",
+                display:"inline-flex", alignItems:"center", gap:5,
+                padding:"4px 14px", borderRadius:20,
+                background:"linear-gradient(90deg,rgba(252,211,77,0.18),rgba(251,191,36,0.12))",
+                border:"1px solid rgba(252,211,77,0.35)",
+                fontSize:12, fontWeight:700, color:AMBER,
+                boxShadow:`0 0 16px rgba(252,211,77,0.18), inset 0 1px 0 rgba(255,255,255,0.12)`,
               }}>
-                <Award size={12} color={ORANGE} />
+                <Award size={12} color={AMBER} />
                 {user.tier}
               </span>
 
-              {/* Stars */}
-              <div className="flex items-center gap-2 mt-1">
-                <div className="flex items-center gap-0.5">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} size={12}
-                      fill={s <= Math.round(user.rating) ? ORANGE : "none"}
-                      color={s <= Math.round(user.rating) ? ORANGE : SEP}
-                      strokeWidth={1.5} />
+              {/* Rating row */}
+              <div className="flex items-center gap-2 mt-2">
+                <div className="flex items-center gap-1">
+                  {[1,2,3,4,5].map((s) => (
+                    <Star key={s} size={13}
+                      fill={s <= Math.round(user.rating) ? AMBER : "none"}
+                      color={s <= Math.round(user.rating) ? AMBER : W20}
+                      strokeWidth={1.5}
+                    />
                   ))}
                 </div>
-                <span style={{ fontSize: 13, fontWeight: 700, color: LABEL }}>{user.rating}</span>
-                <span style={{ fontSize: 12, color: LABEL3 }}>· {user.reviews} reviews</span>
+                <span style={{ fontSize:14, fontWeight:800, color:W95 }}>{user.rating}</span>
+                <span style={{ fontSize:13, color:W38 }}>· {user.reviews} reviews</span>
               </div>
 
-              <div className="flex items-center gap-3 mt-1">
-                <p style={{ fontSize: 11, color: LABEL3, fontWeight: 400 }}>{user.member}</p>
-                <button onClick={() => setShowEdit(true)}
+              {/* Member since + edit */}
+              <div className="flex items-center gap-3 mt-2">
+                <p style={{ fontSize:11, color:W38, fontWeight:500 }}>{user.member}</p>
+                <button
+                  onClick={() => setShowEdit(true)}
                   style={{
-                    ...G.chip, display: "flex", alignItems: "center", gap: 5,
-                    padding: "5px 12px", borderRadius: 20, cursor: "pointer",
-                    fontSize: 11, fontWeight: 600, color: BLUE,
+                    ...G.sm, display:"flex", alignItems:"center", gap:5,
+                    padding:"5px 12px", borderRadius:20, cursor:"pointer",
+                    fontSize:11, fontWeight:700, color:GREEN_BRIGHT,
                   }}>
-                  <Edit3 size={11} color={BLUE} />
-                  Edit
+                  <Edit3 size={11} color={GREEN_BRIGHT} />
+                  Edit Profile
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── STATS ROW ─────────────────────────────────── */}
-        <div className="flex gap-3 px-4 mt-3">
-          <ProfileStat icon={<BookOpen size={15} color={BLUE} />}    value="6"   label="BOOKINGS" tint={BLUE} />
-          <ProfileStat icon={<Star size={15}     color={ORANGE} />}  value="4.9" label="RATING"   tint={ORANGE} />
-          <ProfileStat icon={<Zap size={15}      color={PURPLE} />}  value="850" label="PTS"      tint={PURPLE} />
+        {/* ══════════════════════════════════════════════════════════
+            STATS ROW
+        ══════════════════════════════════════════════════════════ */}
+        <div className="flex gap-3 px-4 mt-4" style={{ animation:"fadeUp 0.45s 0.07s ease both", opacity:0 }}>
+          <ProfileStat icon={<BookOpen size={16} color={GREEN_BRIGHT} />} value="6"   label="BOOKINGS"  glow={glow(GREEN_BRIGHT)} />
+          <ProfileStat icon={<Star     size={16} color={AMBER}        />} value="4.9" label="RATING"    glow={glow(AMBER)} />
+          <ProfileStat icon={<Zap      size={16} color={PURPLE}       />} value="850" label="PTS"        glow={glow(PURPLE)} />
         </div>
 
-        {/* ── SECTIONS ─────────────────────────────────── */}
-        <div style={{ padding: "20px 16px 48px" }}>
+        {/* ══════════════════════════════════════════════════════════
+            SECTIONS
+        ══════════════════════════════════════════════════════════ */}
+        <div style={{ padding:"20px 16px 48px" }}>
 
-          {/* ACCOUNT */}
-          <SectionLabel label="Account" />
-          <SectionGroup>
-            <ProfileRow icon={<Edit3 size={14} color={BLUE} />} iconTint={BLUE}
-              label="Personal Info" value={user.email} hasChevron onPress={() => setShowEdit(true)} />
-            <Sep />
-            <ProfileRow icon={<MapPin size={14} color={TEAL} />} iconTint={TEAL}
-              label="Saved Addresses" value={`${SAVED_ADDRESSES.length} saved`}
-              hasChevron expanded={addrExpanded} onPress={() => setAddrExpanded(!addrExpanded)} />
+          {/* ── ACCOUNT ── */}
+          <SectionLabel label="ACCOUNT" delay="0.10s" />
+          <SectionCard delay="0.12s">
+
+            {/* Personal Info */}
+            <ProfileRow
+              icon={<Edit3 size={15} color={GREEN_BRIGHT} />}
+              iconBg={glow(GREEN_BRIGHT, 0.20)}
+              iconGlow={glow(GREEN_BRIGHT, 0.35)}
+              label="Personal Info"
+              value={user.email}
+              hasChevron
+              onPress={() => setShowEdit(true)}
+            />
+            <Divider />
+
+            {/* Saved Addresses */}
+            <ProfileRow
+              icon={<MapPin size={15} color={BLUE} />}
+              iconBg={glow(BLUE, 0.20)}
+              iconGlow={glow(BLUE, 0.35)}
+              label="Saved Addresses"
+              value={`${SAVED_ADDRESSES.length} saved`}
+              hasChevron
+              expanded={addrExpanded}
+              onPress={() => setAddrExpanded(!addrExpanded)}
+            />
             {addrExpanded && (
-              <div style={{ paddingLeft: 56, paddingRight: 16, paddingBottom: 12 }}>
+              <div style={{ paddingLeft:20, paddingRight:16, paddingBottom:12 }}>
                 {SAVED_ADDRESSES.map((a, i) => {
                   const Icon = a.icon;
                   return (
                     <div key={a.id}>
                       <div className="flex items-center gap-3 py-2.5">
-                        <div style={{
-                          width: 30, height: 30, borderRadius: 8, background: `${TEAL}14`,
-                          border: `1px solid ${TEAL}20`, display: "flex", alignItems: "center",
-                          justifyContent: "center", flexShrink: 0,
-                        }}>
-                          <Icon size={12} color={TEAL} />
+                        <div style={{ width:32, height:32, borderRadius:9, background:glow(BLUE,0.16),
+                          border:"1px solid rgba(96,165,250,0.20)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                          <Icon size={13} color={BLUE} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p style={{ fontSize: 13, fontWeight: 600, color: LABEL }}>{a.label}</p>
-                          <p style={{ fontSize: 11, color: LABEL3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                            {a.address}
-                          </p>
+                          <p style={{ fontSize:13, fontWeight:700, color:W95 }}>{a.label}</p>
+                          <p style={{ fontSize:11, color:W38, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{a.address}</p>
                         </div>
-                        <ChevronRight size={13} color={LABEL3} />
+                        <ChevronRight size={13} color={W38} />
                       </div>
-                      {i < SAVED_ADDRESSES.length - 1 && <Sep />}
+                      {i < SAVED_ADDRESSES.length - 1 && <Divider />}
                     </div>
                   );
                 })}
-                <button onClick={() => setShowAddAddr(true)}
-                  className="flex items-center gap-2 mt-2 px-3 py-2 rounded-[10px] w-full"
-                  style={{ background: `${BLUE}10`, border: `1px solid ${BLUE}18`,
-                    fontSize: 12, fontWeight: 600, color: BLUE, cursor: "pointer" }}>
-                  <Plus size={12} color={BLUE} /> Add New Address
+                <button
+                  onClick={() => setShowAddAddr(true)}
+                  className="flex items-center gap-2 mt-2 px-3 py-2 rounded-[11px] w-full"
+                  style={{ background:glow(GREEN_BRIGHT,0.10), border:`1px solid rgba(92,219,128,0.22)`,
+                    fontSize:12, fontWeight:700, color:GREEN_BRIGHT, cursor:"pointer" }}>
+                  <Plus size={12} color={GREEN_BRIGHT} />
+                  Add New Address
                 </button>
               </div>
             )}
-            <Sep />
-            <ProfileRow icon={<CreditCard size={14} color={PURPLE} />} iconTint={PURPLE}
-              label="Payment Methods" value="Visa ••4242"
-              hasChevron expanded={payExpanded} onPress={() => setPayExpanded(!payExpanded)} />
+            <Divider />
+
+            {/* Payment Methods */}
+            <ProfileRow
+              icon={<CreditCard size={15} color={PURPLE} />}
+              iconBg={glow(PURPLE, 0.20)}
+              iconGlow={glow(PURPLE, 0.35)}
+              label="Payment Methods"
+              value="Visa ••4242"
+              hasChevron
+              expanded={payExpanded}
+              onPress={() => setPayExpanded(!payExpanded)}
+            />
             {payExpanded && (
-              <div style={{ paddingLeft: 56, paddingRight: 16, paddingBottom: 12 }}>
+              <div style={{ paddingLeft:20, paddingRight:16, paddingBottom:12 }}>
                 {PAYMENT_METHODS.map((pm, i) => (
                   <div key={pm.id}>
                     <div className="flex items-center gap-3 py-2.5">
-                      <div style={{ width: 30, height: 30, borderRadius: 8, background: `${PURPLE}14`,
-                        border: `1px solid ${PURPLE}20`, display: "flex", alignItems: "center",
-                        justifyContent: "center", flexShrink: 0 }}>
-                        <CreditCard size={12} color={PURPLE} />
+                      <div style={{ width:32, height:32, borderRadius:9, background:glow(PURPLE,0.16),
+                        border:"1px solid rgba(192,132,252,0.20)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                        <CreditCard size={13} color={PURPLE} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p style={{ fontSize: 13, fontWeight: 600, color: LABEL }}>
-                          {pm.type} •••• {pm.last4}
-                        </p>
-                        <p style={{ fontSize: 11, color: LABEL3 }}>Expires {pm.expiry}</p>
+                        <p style={{ fontSize:13, fontWeight:700, color:W95 }}>{pm.type} •••• {pm.last4}</p>
+                        <p style={{ fontSize:11, color:W38 }}>Expires {pm.expiry}</p>
                       </div>
                       {pm.primary && (
-                        <span style={{ padding: "2px 8px", borderRadius: 20, background: `${GREEN}12`,
-                          border: `1px solid ${GREEN}22`, fontSize: 10, fontWeight: 600, color: GREEN }}>
-                          Primary
-                        </span>
+                        <span style={{ padding:"2px 8px", borderRadius:20,
+                          background:glow(GREEN_BRIGHT,0.14), border:`1px solid rgba(92,219,128,0.28)`,
+                          fontSize:10, fontWeight:700, color:GREEN_BRIGHT }}>Primary</span>
                       )}
                     </div>
-                    {i < PAYMENT_METHODS.length - 1 && <Sep />}
+                    {i < PAYMENT_METHODS.length - 1 && <Divider />}
                   </div>
                 ))}
-                <button className="flex items-center gap-2 mt-2 px-3 py-2 rounded-[10px] w-full"
-                  style={{ background: `${PURPLE}10`, border: `1px solid ${PURPLE}18`,
-                    fontSize: 12, fontWeight: 600, color: PURPLE, cursor: "pointer" }}>
-                  <Plus size={12} color={PURPLE} /> Add Payment Method
+                <button
+                  className="flex items-center gap-2 mt-2 px-3 py-2 rounded-[11px] w-full"
+                  style={{ background:glow(PURPLE,0.10), border:`1px solid rgba(192,132,252,0.22)`,
+                    fontSize:12, fontWeight:700, color:PURPLE, cursor:"pointer" }}>
+                  <Plus size={12} color={PURPLE} />
+                  Add Payment Method
                 </button>
               </div>
             )}
-            <Sep />
-            <ProfileRow icon={<Gift size={14} color={ORANGE} />} iconTint={ORANGE}
-              label="Promo & Rewards" badge={`${USER.points} pts`} badgeColor={ORANGE} hasChevron />
-            <Sep />
-            <ProfileRow icon={<Share2 size={14} color={TEAL} />} iconTint={TEAL}
-              label="Refer a Friend" value={`Code: ${USER.referral}`} hasChevron />
-          </SectionGroup>
+            <Divider />
 
-          {/* HOME PREFERENCES */}
-          <SectionLabel label="Home Preferences" />
-          <SectionGroup>
-            <ProfileRow icon={<PawPrint size={14} color={GREEN} />} iconTint={GREEN}
-              label="Pets at Home" toggle={{ value: hasPets, onChange: setHasPets }} />
-            <Sep />
-            <ProfileRow icon={<Key size={14} color={BLUE} />} iconTint={BLUE}
-              label="Gate / Access Code" value="••••" hasChevron />
-            <Sep />
-            <ProfileRow icon={<Clock size={14} color={INDIGO} />} iconTint={INDIGO}
-              label="Preferred Service Times" value="Weekdays 9am – 5pm" hasChevron />
-            <Sep />
-            <ProfileRow icon={<FileText size={14} color={ORANGE} />} iconTint={ORANGE}
-              label="Special Instructions" value="Add notes for providers" hasChevron />
-          </SectionGroup>
+            {/* Promo & Rewards */}
+            <ProfileRow
+              icon={<Gift size={15} color={AMBER} />}
+              iconBg={glow(AMBER, 0.20)}
+              iconGlow={glow(AMBER, 0.35)}
+              label="Promo & Rewards"
+              badge={`${USER.points} pts`}
+              badgeColor={AMBER}
+              hasChevron
+            />
+            <Divider />
 
-          {/* NOTIFICATIONS */}
-          <SectionLabel label="Notifications" />
-          <SectionGroup>
-            <ProfileRow icon={<Bell size={14} color={BLUE} />} iconTint={BLUE}
-              label="Push Notifications" toggle={{ value: notifPush, onChange: setNotifPush }} />
-            <Sep />
-            <ProfileRow icon={<Clock size={14} color={GREEN} />} iconTint={GREEN}
-              label="Booking Reminders" toggle={{ value: notifReminder, onChange: setNotifReminder }} />
-            <Sep />
-            <ProfileRow icon={<Tag size={14} color={ORANGE} />} iconTint={ORANGE}
-              label="Promotions & Deals" toggle={{ value: notifPromo, onChange: setNotifPromo }} />
-            <Sep />
-            <ProfileRow icon={<MessageSquare size={14} color="#25D366" />} iconTint="#25D366"
-              label="WhatsApp Updates" toggle={{ value: notifWhatsapp, onChange: setNotifWhatsapp }} />
-          </SectionGroup>
+            {/* Referral */}
+            <ProfileRow
+              icon={<Share2 size={15} color={TEAL} />}
+              iconBg={glow(TEAL, 0.20)}
+              iconGlow={glow(TEAL, 0.35)}
+              label="Refer a Friend"
+              value={`Code: ${USER.referral}`}
+              hasChevron
+            />
+          </SectionCard>
 
-          {/* APPEARANCE */}
-          <SectionLabel label="Appearance" />
-          <SectionGroup>
-            <ProfileRow icon={<Moon size={14} color={INDIGO} />} iconTint={INDIGO}
-              label="Dark Mode" toggle={{ value: darkMode, onChange: setDarkMode }} />
-            <Sep />
-            <ProfileRow icon={<Globe size={14} color={BLUE} />} iconTint={BLUE}
-              label="Language" value="English" hasChevron />
-            <Sep />
-            <ProfileRow icon={<Settings size={14} color={LABEL3} />} iconTint={LABEL3}
-              label="Accessibility" hasChevron />
-          </SectionGroup>
+          {/* ── HOME PREFERENCES ── */}
+          <SectionLabel label="HOME PREFERENCES" delay="0.16s" />
+          <SectionCard delay="0.18s">
+            <ProfileRow
+              icon={<PawPrint size={15} color={GREEN_BRIGHT} />}
+              iconBg={glow(GREEN_BRIGHT, 0.18)}
+              iconGlow={glow(GREEN_BRIGHT, 0.32)}
+              label="Pets at Home"
+              toggle={{ value:hasPets, onChange:setHasPets }}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Key size={15} color={BLUE} />}
+              iconBg={glow(BLUE, 0.18)}
+              iconGlow={glow(BLUE, 0.32)}
+              label="Gate / Access Code"
+              value="••••"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Clock size={15} color={PURPLE} />}
+              iconBg={glow(PURPLE, 0.18)}
+              iconGlow={glow(PURPLE, 0.32)}
+              label="Preferred Service Times"
+              value="Weekdays 9am – 5pm"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<FileText size={15} color={AMBER} />}
+              iconBg={glow(AMBER, 0.18)}
+              iconGlow={glow(AMBER, 0.32)}
+              label="Special Instructions"
+              value="Add notes for providers"
+              hasChevron
+            />
+          </SectionCard>
 
-          {/* SAFETY & PRIVACY */}
-          <SectionLabel label="Safety & Privacy" />
-          <SectionGroup>
-            <ProfileRow icon={<Check size={14} color={GREEN} />} iconTint={GREEN}
-              label="ID Verification" badge="Verified" badgeColor={GREEN} />
-            <Sep />
-            <ProfileRow icon={<Fingerprint size={14} color={BLUE} />} iconTint={BLUE}
-              label="Biometric Login" toggle={{ value: biometrics, onChange: setBiometrics }} />
-            <Sep />
-            <ProfileRow icon={<Lock size={14} color={ORANGE} />} iconTint={ORANGE}
-              label="Two-Factor Auth" toggle={{ value: twoFactor, onChange: setTwoFactor }} />
-            <Sep />
-            <ProfileRow icon={<Shield size={14} color={PURPLE} />} iconTint={PURPLE}
-              label="Privacy Settings" hasChevron />
-            <Sep />
-            <ProfileRow icon={<Heart size={14} color={PINK} />} iconTint={PINK}
-              label="Emergency Contact" value="Not set" hasChevron />
-          </SectionGroup>
+          {/* ── NOTIFICATIONS ── */}
+          <SectionLabel label="NOTIFICATIONS" delay="0.22s" />
+          <SectionCard delay="0.24s">
+            <ProfileRow
+              icon={<Bell size={15} color={BLUE} />}
+              iconBg={glow(BLUE, 0.18)}
+              iconGlow={glow(BLUE, 0.32)}
+              label="Push Notifications"
+              toggle={{ value:notifPush, onChange:setNotifPush }}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Clock size={15} color={GREEN_BRIGHT} />}
+              iconBg={glow(GREEN_BRIGHT, 0.18)}
+              iconGlow={glow(GREEN_BRIGHT, 0.32)}
+              label="Booking Reminders"
+              toggle={{ value:notifReminder, onChange:setNotifReminder }}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Tag size={15} color={AMBER} />}
+              iconBg={glow(AMBER, 0.18)}
+              iconGlow={glow(AMBER, 0.32)}
+              label="Promotions & Deals"
+              toggle={{ value:notifPromo, onChange:setNotifPromo }}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<MessageSquare size={15} color={GREEN_BRIGHT} />}
+              iconBg="rgba(37,211,102,0.18)"
+              iconGlow="rgba(37,211,102,0.35)"
+              label="WhatsApp Updates"
+              toggle={{ value:notifWhatsapp, onChange:setNotifWhatsapp }}
+            />
+          </SectionCard>
 
-          {/* SUPPORT */}
-          <SectionLabel label="Support" />
-          <SectionGroup>
-            <ProfileRow icon={<HelpCircle size={14} color={BLUE} />} iconTint={BLUE}
-              label="Help Centre" hasChevron />
-            <Sep />
-            <ProfileRow icon={<MessageCircle size={14} color={GREEN} />} iconTint={GREEN}
-              label="Live Chat Support" badge="Online" badgeColor={GREEN} hasChevron />
-            <Sep />
-            <ProfileRow icon={<AlertTriangle size={14} color={ORANGE} />} iconTint={ORANGE}
-              label="Report a Problem" hasChevron />
-            <Sep />
-            <ProfileRow icon={<ThumbsUp size={14} color={PURPLE} />} iconTint={PURPLE}
-              label="Rate ServeHub" value="★★★★★" hasChevron />
-          </SectionGroup>
+          {/* ── APPEARANCE ── */}
+          <SectionLabel label="APPEARANCE" delay="0.28s" />
+          <SectionCard delay="0.30s">
+            <ProfileRow
+              icon={<Moon size={15} color={PURPLE} />}
+              iconBg={glow(PURPLE, 0.18)}
+              iconGlow={glow(PURPLE, 0.32)}
+              label="Dark Mode"
+              toggle={{ value:darkMode, onChange:setDarkMode }}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Globe size={15} color={BLUE} />}
+              iconBg={glow(BLUE, 0.18)}
+              iconGlow={glow(BLUE, 0.32)}
+              label="Language"
+              value="English"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Settings size={15} color={W65} />}
+              iconBg="rgba(255,255,255,0.10)"
+              iconGlow="rgba(255,255,255,0.18)"
+              label="Accessibility"
+              hasChevron
+            />
+          </SectionCard>
 
-          {/* ABOUT */}
-          <SectionLabel label="About" />
-          <SectionGroup>
-            <ProfileRow icon={<FileText size={14} color={LABEL3} />} iconTint={LABEL3}
-              label="Terms of Service" hasChevron />
-            <Sep />
-            <ProfileRow icon={<Shield size={14} color={LABEL3} />} iconTint={LABEL3}
-              label="Privacy Policy" hasChevron />
-            <Sep />
-            <ProfileRow icon={<Info size={14} color={LABEL3} />} iconTint={LABEL3}
-              label="App Version" value="ServeHub 1.4.2" />
-          </SectionGroup>
+          {/* ── SAFETY & PRIVACY ── */}
+          <SectionLabel label="SAFETY & PRIVACY" delay="0.34s" />
+          <SectionCard delay="0.36s">
+            <ProfileRow
+              icon={<Check size={15} color={GREEN_BRIGHT} />}
+              iconBg={glow(GREEN_BRIGHT, 0.20)}
+              iconGlow={glow(GREEN_BRIGHT, 0.40)}
+              label="ID Verification"
+              badge="Verified"
+              badgeColor={GREEN_BRIGHT}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Fingerprint size={15} color={BLUE} />}
+              iconBg={glow(BLUE, 0.18)}
+              iconGlow={glow(BLUE, 0.32)}
+              label="Biometric Login"
+              toggle={{ value:biometrics, onChange:setBiometrics }}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Lock size={15} color={AMBER} />}
+              iconBg={glow(AMBER, 0.18)}
+              iconGlow={glow(AMBER, 0.32)}
+              label="Two-Factor Auth"
+              toggle={{ value:twoFactor, onChange:setTwoFactor }}
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Shield size={15} color={PURPLE} />}
+              iconBg={glow(PURPLE, 0.18)}
+              iconGlow={glow(PURPLE, 0.32)}
+              label="Privacy Settings"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Heart size={15} color={RED} />}
+              iconBg="rgba(248,113,113,0.18)"
+              iconGlow="rgba(248,113,113,0.32)"
+              label="Emergency Contact"
+              value="Not set"
+              hasChevron
+            />
+          </SectionCard>
 
-          {/* Sign Out */}
-          <div style={{ marginTop: 8 }}>
+          {/* ── SUPPORT ── */}
+          <SectionLabel label="SUPPORT" delay="0.40s" />
+          <SectionCard delay="0.42s">
+            <ProfileRow
+              icon={<HelpCircle size={15} color={BLUE} />}
+              iconBg={glow(BLUE, 0.18)}
+              iconGlow={glow(BLUE, 0.32)}
+              label="Help Centre"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<MessageCircle size={15} color={GREEN_BRIGHT} />}
+              iconBg={glow(GREEN_BRIGHT, 0.18)}
+              iconGlow={glow(GREEN_BRIGHT, 0.32)}
+              label="Live Chat Support"
+              badge="Online"
+              badgeColor={GREEN_BRIGHT}
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<AlertTriangle size={15} color={AMBER} />}
+              iconBg={glow(AMBER, 0.18)}
+              iconGlow={glow(AMBER, 0.32)}
+              label="Report a Problem"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<ThumbsUp size={15} color={PURPLE} />}
+              iconBg={glow(PURPLE, 0.18)}
+              iconGlow={glow(PURPLE, 0.32)}
+              label="Rate ServeHub"
+              value="★★★★★"
+              hasChevron
+            />
+          </SectionCard>
+
+          {/* ── LEGAL & ABOUT ── */}
+          <SectionLabel label="ABOUT" delay="0.46s" />
+          <SectionCard delay="0.48s">
+            <ProfileRow
+              icon={<FileText size={15} color={W65} />}
+              iconBg="rgba(255,255,255,0.10)"
+              iconGlow="rgba(255,255,255,0.16)"
+              label="Terms of Service"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Shield size={15} color={W65} />}
+              iconBg="rgba(255,255,255,0.10)"
+              iconGlow="rgba(255,255,255,0.16)"
+              label="Privacy Policy"
+              hasChevron
+            />
+            <Divider />
+            <ProfileRow
+              icon={<Info size={15} color={W65} />}
+              iconBg="rgba(255,255,255,0.10)"
+              iconGlow="rgba(255,255,255,0.16)"
+              label="App Version"
+              value="ServeHub 1.4.2"
+            />
+          </SectionCard>
+
+          {/* ── SIGN OUT ── */}
+          <div style={{ animation:"fadeUp 0.45s 0.52s ease both", opacity:0, marginTop:8 }}>
             <button
-              className="w-full flex items-center justify-center gap-3 py-3.5 rounded-[18px]"
+              className="w-full flex items-center justify-center gap-3 py-4 rounded-[22px]"
               style={{
-                ...G.card,
-                background: "rgba(255,59,48,0.08)",
-                border: "1px solid rgba(255,59,48,0.18)",
-                boxShadow: "0 2px 12px rgba(255,59,48,0.08)",
-                fontSize: 15, fontWeight: 600, color: RED, cursor: "pointer",
+                ...G.md,
+                background:"rgba(248,113,113,0.10)",
+                border:"1px solid rgba(248,113,113,0.25)",
+                boxShadow:`0 8px 32px rgba(248,113,113,0.14), inset 0 1px 0 rgba(255,255,255,0.14)`,
+                fontSize:15, fontWeight:700, color:RED, cursor:"pointer",
               }}
             >
-              <LogOut size={16} color={RED} />
+              <LogOut size={17} color={RED} />
               Sign Out
             </button>
           </div>
+
         </div>
       </div>
 
-      {showEdit && (
-        <EditProfileModal user={user} onClose={() => setShowEdit(false)}
-          onSave={(u) => setUser((prev) => ({ ...prev, ...u }))} />
-      )}
+      {/* Modals */}
+      {showEdit    && <EditProfileModal user={user} onClose={() => setShowEdit(false)}
+        onSave={(u) => setUser((prev) => ({ ...prev, ...u }))} />}
       {showAddAddr && <AddAddressModal onClose={() => setShowAddAddr(false)} />}
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════════
    SUB-COMPONENTS
-═══════════════════════════════════════════════════════════════ */
-function ProfileStat({ icon, value, label, tint }: {
-  icon: React.ReactNode; value: string; label: string; tint: string;
+═══════════════════════════════════════════════════════════════════ */
+
+/* Background orb helper */
+function Orb({ top, bottom, left, right, size, color, blur, anim }: {
+  top?: number|string; bottom?: number|string; left?: number|string; right?: number|string;
+  size: number; color: string; blur: number; anim: string;
 }) {
   return (
-    <div className="flex-1 flex flex-col items-center gap-1.5 py-3.5 rounded-[20px]"
-      style={{ ...G.card, position: "relative", overflow: "hidden" }}>
-      {/* Specular */}
-      <div style={{
-        position: "absolute", top: 0, left: "10%", right: "10%", height: 0.5,
-        background: "linear-gradient(90deg, transparent, rgba(255,255,255,1) 50%, transparent)",
-      }} />
-      <div style={{
-        width: 36, height: 36, borderRadius: "50%",
-        background: `${tint}14`, border: `1px solid ${tint}22`,
-        display: "flex", alignItems: "center", justifyContent: "center",
-      }}>
+    <div style={{
+      position:"absolute", top, bottom, left, right,
+      width:size, height:size, borderRadius:"50%",
+      background:`radial-gradient(circle,${color} 0%,transparent 70%)`,
+      filter:`blur(${blur}px)`, animation:anim,
+    }} />
+  );
+}
+
+/* Stat card */
+function ProfileStat({ icon, value, label, glow: glowVal }: {
+  icon: React.ReactNode; value: string; label: string; glow: string;
+}) {
+  return (
+    <div className="flex-1 flex flex-col items-center gap-1.5 py-4 rounded-[22px]"
+      style={{ ...G.md, position:"relative", overflow:"hidden" }}>
+      <div style={{ position:"absolute", top:0, left:"10%", right:"10%", height:1,
+        background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.55) 50%,transparent)" }} />
+      <div style={{ width:38, height:38, borderRadius:"50%", background:glowVal,
+        border:"1px solid rgba(255,255,255,0.12)",
+        boxShadow:`0 0 18px ${glowVal}`,
+        display:"flex", alignItems:"center", justifyContent:"center" }}>
         {icon}
       </div>
-      <p style={{ fontSize: 18, fontWeight: 700, color: LABEL, letterSpacing: "-0.03em", lineHeight: 1 }}>
-        {value}
-      </p>
-      <p style={{ fontSize: 9, color: LABEL3, fontWeight: 600, letterSpacing: "0.06em" }}>
-        {label}
-      </p>
+      <p style={{ fontSize:19, fontWeight:800, color:W95, letterSpacing:"-0.03em", lineHeight:1 }}>{value}</p>
+      <p style={{ fontSize:9, color:W38, fontWeight:700, letterSpacing:"0.07em" }}>{label}</p>
     </div>
   );
 }
 
-function SectionLabel({ label }: { label: string }) {
+/* Section label */
+function SectionLabel({ label, delay }: { label: string; delay: string }) {
   return (
-    <p style={{ fontSize: 13, fontWeight: 600, color: LABEL2, marginBottom: 8, paddingLeft: 4, marginTop: 24 }}>
+    <p style={{
+      fontSize:10, fontWeight:700, color:W38, letterSpacing:"0.10em",
+      marginBottom:10, paddingLeft:4, marginTop:24,
+      animation:`fadeUp 0.45s ${delay} ease both`, opacity:0,
+    }}>
       {label}
     </p>
   );
 }
 
-function SectionGroup({ children }: { children: React.ReactNode }) {
+/* Section card wrapper */
+function SectionCard({ children, delay }: { children: React.ReactNode; delay: string }) {
   return (
-    <div style={{ ...G.card, borderRadius: 18, overflow: "hidden", position: "relative" }}>
-      {/* Specular top edge */}
-      <div style={{
-        position: "absolute", top: 0, left: "8%", right: "8%", height: 0.5,
-        background: "linear-gradient(90deg, transparent, rgba(255,255,255,1) 50%, transparent)",
-        pointerEvents: "none",
-      }} />
+    <div style={{ ...G.md, borderRadius:22, overflow:"hidden", position:"relative",
+      animation:`fadeUp 0.45s ${delay} ease both`, opacity:0 }}>
+      <div style={{ position:"absolute", top:0, left:"10%", right:"10%", height:1,
+        background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.42) 50%,transparent)" }} />
       {children}
     </div>
   );
 }
 
-function Sep() {
-  return (
-    <div style={{ height: 0.5, background: SEP, marginLeft: 56 }} />
-  );
+/* Row divider */
+function Divider() {
+  return <div style={{ height:1, background:"rgba(255,255,255,0.055)", marginLeft:56 }} />;
 }
 
 /* iOS-style toggle */
-function LightToggle({ value, onChange }: { value: boolean; onChange: (v: boolean) => void }) {
+function GlassToggle({ value, onChange }: { value: boolean; onChange: (v: boolean) => void }) {
   return (
     <div
       onClick={() => onChange(!value)}
       style={{
-        width: 50, height: 30, borderRadius: 15, cursor: "pointer", flexShrink: 0,
-        background: value ? GREEN : "rgba(120,120,128,0.20)",
-        boxShadow: value ? "0 2px 8px rgba(52,199,89,0.30)" : "none",
-        position: "relative", transition: "background 0.22s ease, box-shadow 0.22s ease",
+        width:48, height:28, borderRadius:14, cursor:"pointer", flexShrink:0,
+        background: value
+          ? `linear-gradient(135deg,${GREEN_DARK},#3a9e52)`
+          : "rgba(255,255,255,0.10)",
+        border: value
+          ? "1px solid rgba(92,219,128,0.40)"
+          : "1px solid rgba(255,255,255,0.13)",
+        boxShadow: value
+          ? `0 0 18px rgba(92,219,128,0.35), inset 0 1px 0 rgba(255,255,255,0.22)`
+          : `inset 0 1px 0 rgba(255,255,255,0.10)`,
+        position:"relative", transition:"all 0.25s ease",
       }}
     >
       <div style={{
-        position: "absolute", top: 2,
-        left: value ? 22 : 2,
-        width: 26, height: 26, borderRadius: "50%",
-        background: "#fff",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.20), 0 0.5px 2px rgba(0,0,0,0.12)",
-        transition: "left 0.22s cubic-bezier(0.34,1.56,0.64,1)",
+        position:"absolute", top:3,
+        left: value ? 21 : 3,
+        width:20, height:20, borderRadius:"50%",
+        background:"#fff",
+        boxShadow:"0 2px 8px rgba(0,0,0,0.35)",
+        transition:"left 0.25s cubic-bezier(0.34,1.56,0.64,1)",
       }} />
     </div>
   );
@@ -662,10 +875,10 @@ function LightToggle({ value, onChange }: { value: boolean; onChange: (v: boolea
 
 /* Profile row */
 function ProfileRow({
-  icon, iconTint, label, value, hasChevron, toggle,
+  icon, iconBg, iconGlow, label, value, hasChevron, toggle,
   badge, badgeColor, onPress, expanded,
 }: {
-  icon: React.ReactNode; iconTint: string;
+  icon: React.ReactNode; iconBg: string; iconGlow: string;
   label: string; value?: string; hasChevron?: boolean;
   toggle?: { value: boolean; onChange: (v: boolean) => void };
   badge?: string; badgeColor?: string;
@@ -673,76 +886,66 @@ function ProfileRow({
 }) {
   return (
     <div
-      className="flex items-center gap-3 px-4 py-3"
-      style={{ cursor: onPress || toggle ? "pointer" : "default" }}
+      className="flex items-center gap-3 px-4 py-3.5"
+      style={{ cursor: onPress ? "pointer" : "default" }}
       onClick={onPress}
     >
-      {/* Icon container */}
+      {/* Icon pill */}
       <div style={{
-        width: 34, height: 34, borderRadius: 9, flexShrink: 0,
-        background: `${iconTint}14`,
-        border: `1px solid ${iconTint}18`,
-        display: "flex", alignItems: "center", justifyContent: "center",
+        width:36, height:36, borderRadius:11, flexShrink:0,
+        background:iconBg, border:"1px solid rgba(255,255,255,0.09)",
+        boxShadow:`0 0 14px ${iconGlow}`,
+        display:"flex", alignItems:"center", justifyContent:"center",
       }}>
         {icon}
       </div>
 
       {/* Text */}
       <div className="flex-1 min-w-0">
-        <p style={{ fontSize: 15, fontWeight: 400, color: LABEL, lineHeight: 1.3 }}>{label}</p>
-        {value && (
-          <p style={{ fontSize: 12, color: LABEL3, marginTop: 1, overflow: "hidden",
-            textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            {value}
-          </p>
-        )}
+        <p style={{ fontSize:14, fontWeight:600, color:W95, lineHeight:1.3 }}>{label}</p>
+        {value && <p style={{ fontSize:11, color:W38, marginTop:1, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{value}</p>}
       </div>
 
       {/* Right element */}
-      {toggle && <LightToggle {...toggle} />}
+      {toggle && <GlassToggle {...toggle} />}
       {badge && (
         <span style={{
-          padding: "3px 9px", borderRadius: 20, fontSize: 11, fontWeight: 600,
-          color: badgeColor ?? GREEN,
-          background: `${badgeColor ?? GREEN}14`,
-          border: `1px solid ${badgeColor ?? GREEN}22`,
+          padding:"3px 9px", borderRadius:20, fontSize:10, fontWeight:700,
+          color:badgeColor ?? GREEN_BRIGHT,
+          background:`rgba(${hexRgb(badgeColor ?? GREEN_BRIGHT)},0.14)`,
+          border:`1px solid rgba(${hexRgb(badgeColor ?? GREEN_BRIGHT)},0.28)`,
+          boxShadow:`0 0 10px rgba(${hexRgb(badgeColor ?? GREEN_BRIGHT)},0.20)`,
         }}>
           {badge}
         </span>
       )}
       {hasChevron && !toggle && !badge && (
-        <ChevronRight size={15} color="rgba(60,60,67,0.30)" />
-      )}
-      {hasChevron && expanded !== undefined && !toggle && !badge && (
-        expanded
-          ? <ChevronDown size={15} color="rgba(60,60,67,0.30)" />
-          : <ChevronRight size={15} color="rgba(60,60,67,0.30)" />
+        expanded !== undefined
+          ? (expanded ? <ChevronUp size={15} color={W38} /> : <ChevronDown size={15} color={W38} />)
+          : <ChevronRight size={15} color={W38} />
       )}
     </div>
   );
 }
 
-/* Light mode input */
-function LightInput({ label, value, onChange, placeholder, type = "text" }: {
+/* Glass input field */
+function GlassInput({ label, value, onChange, placeholder, type = "text" }: {
   label: string; value: string; onChange: (v: string) => void;
   placeholder: string; type?: string;
 }) {
   return (
     <div>
-      <p style={{ fontSize: 12, fontWeight: 500, color: LABEL3, marginBottom: 6 }}>{label}</p>
+      <p style={{ fontSize:11, fontWeight:700, color:W38, letterSpacing:"0.08em", marginBottom:6 }}>{label.toUpperCase()}</p>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         style={{
-          width: "100%",
-          background: "rgba(118,118,128,0.08)",
-          border: "1px solid rgba(60,60,67,0.12)",
-          borderRadius: 12, padding: "12px 14px",
-          fontSize: 15, color: LABEL,
-          fontFamily: "'SF Pro Display', -apple-system, sans-serif",
-          outline: "none", boxSizing: "border-box" as const,
+          width:"100%", ...G.sm, borderRadius:14,
+          padding:"13px 16px", fontSize:14, color:W95,
+          fontFamily:"'Inter',sans-serif", outline:"none",
+          boxSizing:"border-box",
         }}
       />
     </div>
